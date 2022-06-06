@@ -7,43 +7,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import br.com.triadpesquisa.anp.Bean.PostoBean;
-
 @Entity
-@Table(name = "tb_estado")
-public class Estado {
+@Table(name = "tb_bandeira")
+public class Bandeira {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private Long id;
 	
-	@Column(name = "sigla")
-	private String sigla;
-	
 	@Column(name = "nome")
 	private String nome;
-
-	public Estado(PostoBean posto) {
-		this.id = (long) posto.getEstadoId();
-	}
-	
-	
-
-	public Estado() {
-		super();
-	}
-
-
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getSigla() {
-		return sigla;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
 		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }

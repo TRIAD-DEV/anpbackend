@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,4 +35,19 @@ public class PostoController {
 			return ResponseEntity.badRequest().body(result);
 		}
 	}
+	
+	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseResult> BuscarPostos(HttpServletRequest request) {
+		ResponseResult result = new ResponseResult();
+		
+		try {
+			result = _service.Buscar();
+			return ResponseEntity.ok(result);
+		} catch (Exception e) {
+			result.Error("Não foi possível buscar os postos.");
+			return ResponseEntity.badRequest().body(result);
+		}
+	}
+	
+	
 }

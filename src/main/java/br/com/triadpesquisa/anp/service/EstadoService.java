@@ -1,6 +1,7 @@
 package br.com.triadpesquisa.anp.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class EstadoService {
 		ResponseResult result = new ResponseResult(); 
 		
 		List<Estado> estadosEntities = _repository.findAll();
-		List<EstadoVo> estadosVo = estadosEntities.stream().map(uf -> new EstadoVo(uf)).toList();
+		List<EstadoVo> estadosVo = estadosEntities.stream().map(uf -> new EstadoVo(uf)).collect(Collectors.toList());
 		
 		result.Success(estadosVo);
 		return result;
