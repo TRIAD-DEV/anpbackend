@@ -12,6 +12,7 @@ import br.com.triadpesquisa.anp.entity.Estado;
 import br.com.triadpesquisa.anp.entity.Posto;
 import br.com.triadpesquisa.anp.entity.ResponseResult;
 import br.com.triadpesquisa.anp.model.EstadoVo;
+import br.com.triadpesquisa.anp.model.PostoVo;
 import br.com.triadpesquisa.anp.repository.EstadoRepository;
 import br.com.triadpesquisa.anp.repository.PostoRepository;
 import ch.qos.logback.core.joran.spi.NoAutoStart;
@@ -34,10 +35,15 @@ public class PostoService {
 			ResponseResult result = new ResponseResult(); 
 			
 			List<Posto> postoEntities = _repository.findAll();
-			//List<EstadoVo> estadosVo = estadosEntities.stream().map(uf -> new EstadoVo(uf)).collect(Collectors.toList());
+			List<PostoVo> postoVo = postoEntities.stream().map(posto -> new PostoVo(posto)).collect(Collectors.toList());
 			
-			result.Success(postoEntities);
+			result.Success(postoVo);
 			return result;
 		}
+	
+	
+	//deletar
+	
+	//atualizar
 		
 }

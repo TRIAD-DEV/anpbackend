@@ -31,6 +31,12 @@ public class Endereco {
 	
 	@Column(name = "cidade")
 	private String cidade;
+	
+	@Column(name = "latitude")
+	private float latitude;
+	
+	@Column(name = "longitude")
+	private float longitude;
 
 	@ManyToOne
 	@JoinColumn(name = "estadoid", nullable = false)
@@ -42,7 +48,6 @@ public class Endereco {
 		this.bairro = posto.getBairro();
 		this.cidade = posto.getCidade();
 		this.estado = new Estado(posto);
-		
 	}
 
 	
@@ -90,6 +95,39 @@ public class Endereco {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
+
+	public float getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(float latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public float getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(float longitude) {
+		this.longitude = longitude;
+	}
+
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
+	
+	
 	
 	
 	
