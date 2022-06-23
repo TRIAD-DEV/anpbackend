@@ -47,6 +47,8 @@ public class Endereco {
 		this.complemento = posto.getComplemento();
 		this.bairro = posto.getBairro();
 		this.cidade = posto.getCidade();
+		this.latitude = posto.getLatitude();
+		this.longitude = posto.getLongitude();
 		this.estado = new Estado(posto);
 	}
 

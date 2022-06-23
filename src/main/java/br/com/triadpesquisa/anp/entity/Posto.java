@@ -52,6 +52,10 @@ public class Posto {
 		this.cnpj = posto.getCnpj();
 		this.razaoSocial = posto.getRazaoSocial();
 		this.nomeFantasia = posto.getNomeFantasia();
+		this.situacao = new Situacao();
+		this.situacao.setId(posto.getSituacaoId());
+		this.bandeira = new Bandeira();
+		this.bandeira.setId(posto.getBandeiraId());
 		
 	}
 	

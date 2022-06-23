@@ -17,6 +17,12 @@ public class Bandeira {
 	
 	@Column(name = "nome")
 	private String nome;
+	
+	
+
+	public Bandeira() {
+		super();
+	}
 
 	public Long getId() {
 		return id;

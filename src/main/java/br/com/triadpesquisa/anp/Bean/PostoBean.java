@@ -1,6 +1,8 @@
 package br.com.triadpesquisa.anp.Bean;
 
 public class PostoBean {
+	
+	private Long codigo;
 	private String cnpj;
 	private String razaoSocial;
 	private String nomeFantasia;
@@ -11,8 +13,17 @@ public class PostoBean {
 	private int estadoId;
 	private float latitude;
 	private float longitude;
-	private int situacaoId;
+	private Long situacaoId;
+	private Long bandeiraId;
 	
+	
+	
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -73,10 +84,18 @@ public class PostoBean {
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
-	public int getSituacaoId() {
+	public Long getSituacaoId() {
 		return situacaoId;
 	}
-	public void setSituacaoId(int situacaoId) {
+	public void setSituacaoId(Long situacaoId) {
 		this.situacaoId = situacaoId;
 	}
+	public Long getBandeiraId() {
+		return bandeiraId;
+	}
+	public void setBandeiraId(Long bandeiraId) {
+		this.bandeiraId = bandeiraId;
+	}
+	
+	
 }
