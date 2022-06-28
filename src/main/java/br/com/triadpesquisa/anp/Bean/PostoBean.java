@@ -10,7 +10,7 @@ public class PostoBean {
 	private String complemento;
 	private String bairro;
 	private String cidade;
-	private int estadoId;
+	private Long estadoId; 
 	private float latitude;
 	private float longitude;
 	private Long situacaoId;
@@ -66,10 +66,11 @@ public class PostoBean {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-	public int getEstadoId() {
+	
+	public Long getEstadoId() {
 		return estadoId;
 	}
-	public void setEstadoId(int estadoId) {
+	public void setEstadoId(Long estadoId) {
 		this.estadoId = estadoId;
 	}
 	public float getLatitude() {

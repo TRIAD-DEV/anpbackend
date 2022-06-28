@@ -50,6 +50,7 @@ public class Endereco {
 		this.latitude = posto.getLatitude();
 		this.longitude = posto.getLongitude();
 		this.estado = new Estado(posto);
+		
 	}
 
 	
