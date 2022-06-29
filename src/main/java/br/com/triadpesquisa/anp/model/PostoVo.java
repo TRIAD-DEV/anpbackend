@@ -1,14 +1,8 @@
 package br.com.triadpesquisa.anp.model;
 
-import br.com.triadpesquisa.anp.entity.Bandeira;
-import br.com.triadpesquisa.anp.entity.Endereco;
-import br.com.triadpesquisa.anp.entity.Estado;
 import br.com.triadpesquisa.anp.entity.Posto;
-import br.com.triadpesquisa.anp.entity.Situacao;
 
 public class PostoVo {
-	
-	//CNPJ, RAZAOSOCIAL, NOMEFANTASIA, BANDEIRA,SITUACAO,ENDREREco,COMPLEMENTO,BAIRRO,CIDADE,UF,REGIAO,LAT,LONG
 	
 	private Long codigo;
 	private String cnpj;

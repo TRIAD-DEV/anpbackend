@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -53,9 +52,7 @@ public class Posto {
 		this.razaoSocial = posto.getRazaoSocial();
 		this.nomeFantasia = posto.getNomeFantasia();
 		this.situacao = new Situacao();
-		this.situacao.setId(posto.getSituacaoId());
 		this.bandeira = new Bandeira();
-		this.bandeira.setId(posto.getBandeiraId());
 		
 	}
 	

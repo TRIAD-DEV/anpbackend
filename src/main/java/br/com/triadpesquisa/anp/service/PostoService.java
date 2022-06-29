@@ -5,19 +5,23 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.triadpesquisa.anp.Bean.PostoBean;
+import br.com.triadpesquisa.anp.entity.Bandeira;
 import br.com.triadpesquisa.anp.entity.Endereco;
 import br.com.triadpesquisa.anp.entity.Estado;
 import br.com.triadpesquisa.anp.entity.Posto;
 import br.com.triadpesquisa.anp.entity.ResponseResult;
+import br.com.triadpesquisa.anp.entity.Situacao;
 import br.com.triadpesquisa.anp.model.EstadoVo;
 import br.com.triadpesquisa.anp.model.PostoVo;
+import br.com.triadpesquisa.anp.repository.BandeiraRepository;
 import br.com.triadpesquisa.anp.repository.EnderecoRepository;
+import br.com.triadpesquisa.anp.repository.EstadoRepository;
 import br.com.triadpesquisa.anp.repository.PostoRepository;
+import br.com.triadpesquisa.anp.repository.SituacaoRepository;
 
 @Service
 public class PostoService {
@@ -27,26 +31,80 @@ public class PostoService {
 
 	@Autowired
 	private EnderecoRepository _repositoryEndereco;
+	
+	@Autowired
+	private EstadoRepository _repositoryEstado;
+	
+	@Autowired
+	private BandeiraRepository _repositoryBandeira;
+	
+	@Autowired
+	private SituacaoRepository _repositorySituacao;
+	
 
-	public void Adicionar(PostoBean postoBean) {
-		Endereco endereco = new Endereco(postoBean);
-		_repositoryEndereco.save(endereco);
+	
+	//Post
+	public ResponseResult Adicionar(PostoBean postoBean) {
+		
+		ResponseResult result = new ResponseResult();
+		
+		Endereco endereco = new Endereco(postoBean);;
 		Posto posto = new Posto(postoBean);
+		
+		Estado estado = _repositoryEstado.findById(postoBean.getEstadoId()).get();
+		endereco.setEstado(estado);
+		
+		_repositoryEndereco.save(endereco);
+		
+		Bandeira bandeira = _repositoryBandeira.findById(postoBean.getBandeiraId()).get();
+		Situacao situacao = _repositorySituacao.findById(postoBean.getSituacaoId()).get();
+		posto.setBandeira(bandeira);
+		posto.setSituacao(situacao);
 		posto.setEndereco(endereco);
-		_repository.save(posto);
+		posto.setId(postoBean.getCodigo());
+		
+		Posto novoPosto = _repository.saveAndFlush(posto);
+		result.Success(novoPosto);
+		return result;
+		
+		
+		/* 
+		PostoVo postoVo = new PostoVo(posto);
+		result.Success(postoVo);
+		return result; 
+		 */
 	}
 
 	// put
-	public void Atualizar(PostoBean postoBean) {
+	public ResponseResult Atualizar(PostoBean postoBean) {
 
+		ResponseResult result = new ResponseResult();
+		
 		Endereco endereco = new Endereco(postoBean);;
-		_repositoryEndereco.save(endereco);
 		Posto posto = new Posto(postoBean);
+		
+		Estado estado = _repositoryEstado.findById(postoBean.getEstadoId()).get();
+		endereco.setEstado(estado);
+		
+		_repositoryEndereco.save(endereco);
+		
+		
 		posto.setEndereco(endereco);
 		posto.setId(postoBean.getCodigo());
-		_repository.save(posto);
+		
+		Posto novoPosto = _repository.saveAndFlush(posto);
+		result.Success(novoPosto);
+		return result;
+	
+		/* PostoVo postoVo = new PostoVo(posto);
+		result.Success(postoVo);
+		return result; 
+		 */
 	}
+	
+	
 
+	//get
 	public ResponseResult Buscar() {
 		ResponseResult result = new ResponseResult();
 
@@ -63,6 +121,7 @@ public class PostoService {
 
 		Optional<Posto> posto = _repository.findById(id);
 
+		
 		result.Success(posto);
 		return result;
 	}

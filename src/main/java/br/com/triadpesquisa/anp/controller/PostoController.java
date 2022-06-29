@@ -3,6 +3,7 @@ package br.com.triadpesquisa.anp.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,9 +32,10 @@ public class PostoController {
 		ResponseResult result = new ResponseResult();
 
 		try {
-			_service.Adicionar(postoBean);
-			result.Success("Adicionado com sucesso");
+			result = _service.Adicionar(postoBean);
 			return ResponseEntity.ok(result);
+			
+			//return new ResponseEntity<>(result,HttpStatus.CREATED);
 		} catch (Exception e) {
 			result.Error("Não foi possível inserir o posto.");
 			return ResponseEntity.badRequest().body(result);
@@ -46,8 +48,7 @@ public class PostoController {
 		ResponseResult result = new ResponseResult();
 
 		try {
-			_service.Atualizar(postoBean);
-			result.Success("Atualizado com sucesso");
+			result = _service.Atualizar(postoBean);
 			return ResponseEntity.ok(result);
 		} catch (Exception e) {
 			result.Error("Não foi possível atualizar o posto.");

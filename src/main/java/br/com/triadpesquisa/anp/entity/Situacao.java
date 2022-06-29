@@ -21,13 +21,9 @@ public class Situacao {
 	@Column(name = "permiteentrega")
 	private boolean entrega;
 	
-	
-
 	public Situacao() {
 		super();
 	}
-
-	
 
 	public Long getId() {
 		return id;
